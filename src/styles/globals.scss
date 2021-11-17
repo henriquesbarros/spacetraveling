@@ -1,7 +1,62 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-// TODO
+body {
+  background: #282C34;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  background-color: unset;
+  border: none;
+}
+
+@media (max-width: 1200px) {
+  html {
+      font-size: 93.75%px; /* 15px */
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+      font-size: 87.5%; /* 14px */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+      font-size: 81.25%; /* 13px */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+      font-size: 75%; /* 12px */
+  }
+}
+
+
