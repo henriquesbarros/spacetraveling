@@ -47,11 +47,6 @@ export default function Home({
   const [posts, postsSet] = useState(results);
   const [nextPage, nextPageSet] = useState(next_page);
 
-  // async function loadMorePages(): Promise<void> {
-  //   postsSet([...posts, ...next_page]);
-  //   nextPageSet(next_page);
-  // }
-
   async function loadMorePages(): Promise<void> {
     await fetch(next_page)
       .then(response => response.json())
@@ -111,26 +106,6 @@ export const getStaticProps: GetStaticProps = async () => {
     [Prismic.Predicates.at('document.type', 'post')],
     { pageSize: 2 }
   );
-
-  // const nextPageResponse = await fetch(postResponse.next_page)
-  //   .then(response => response.json())
-  //   .then(response => response.results);
-
-  // const next_page = nextPageResponse.map(nextPage => {
-  //   return {
-  //     uid: nextPage.uid,
-  //     first_publication_date: format(
-  //       new Date(nextPage.first_publication_date),
-  //       'dd MMM yyyy',
-  //       { locale: ptBR }
-  //     ),
-  //     data: {
-  //       title: nextPage.data.title,
-  //       subtitle: nextPage.data.subtitle,
-  //       author: nextPage.data.author,
-  //     },
-  //   };
-  // });
 
   const results = postResponse.results.map(post => {
     return {
