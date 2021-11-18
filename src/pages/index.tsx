@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Prismic from '@prismicio/client';
+import { FiCalendar, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import { getPrismicClient } from '../services/prismic';
 
 import SEO from '../components/SEO';
 
 // import commonStyles from '../styles/common.module.scss';
-// import styles from './home.module.scss';
+import styles from './home.module.scss';
 
 interface Post {
   uid?: string;
@@ -56,21 +59,36 @@ export default function Home({
   return (
     <>
       <SEO title="Home" />
-      <ul>
-        {posts.map(post => (
-          <li key={post.uid}>
-            <h2>{post.data.title}</h2>
-            <p>{post.data.subtitle}</p>
-            <span>{post.first_publication_date}</span>
-            <span>{post.data.author}</span>
-          </li>
-        ))}
-        {nextPage && (
-          <button type="button" onClick={loadMorePages}>
-            Carregar mais posts
-          </button>
-        )}
-      </ul>
+      <div className={styles.headerHomePage}>
+        <figure>
+          <img src="Logo.svg" alt="Logo" />
+        </figure>
+      </div>
+      <main className={styles.content}>
+        <ul>
+          {posts.map(post => (
+            <li key={post.uid}>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.subtitle}</p>
+              <div className={styles.postInfo}>
+                <div className={styles.first_publication_date}>
+                  <FiCalendar />
+                  <time>{post.first_publication_date}</time>
+                </div>
+                <div className={styles.author}>
+                  <FiUser />
+                  <span>{post.data.author}</span>
+                </div>
+              </div>
+            </li>
+          ))}
+          {nextPage && (
+            <button type="button" onClick={loadMorePages}>
+              Carregar mais posts
+            </button>
+          )}
+        </ul>
+      </main>
     </>
   );
 }
@@ -86,7 +104,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const results = postResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: post.first_publication_date,
+      first_publication_date: format(
+        new Date(post.first_publication_date),
+        'dd MMM yyyy',
+        { locale: ptBR }
+      ),
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,

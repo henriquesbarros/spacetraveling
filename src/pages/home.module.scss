@@ -1,1 +1,69 @@
-// TODO
+.headerHomePage {
+  height: 10.625rem;
+
+  figure {
+    max-width: 43.75rem;
+    height: 10.625rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.content {
+  max-width: 43.75rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  ul {
+    list-style: none;
+
+    li {
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1.125rem;
+        color: #D7D7D7;
+        margin-top: 0.5rem;
+      }
+
+      .postInfo {
+        margin-top: 1.5rem;
+        display: flex;
+
+        time, span {
+          font-size: 0.875rem;
+          margin-left: 0.5rem;
+        }
+
+        .first_publication_date,
+        .author {
+          display: flex;
+          align-items: center;
+        }
+
+        svg {
+          color: #D7D7D7;
+        }
+
+        div + div {
+          margin-left: 1.5rem;
+        }
+      }
+    }
+
+    li + li {
+      margin-top: 3rem;
+    }
+
+    button {
+      color: #FF57B2;
+      font-size: 1.125rem;
+      font-weight: 650;
+      margin-top: 4rem;
+    }
+  }
+}
