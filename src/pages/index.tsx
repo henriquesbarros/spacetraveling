@@ -4,6 +4,8 @@ import Prismic from '@prismicio/client';
 
 import { getPrismicClient } from '../services/prismic';
 
+import SEO from '../components/SEO';
+
 // import commonStyles from '../styles/common.module.scss';
 // import styles from './home.module.scss';
 
@@ -52,21 +54,24 @@ export default function Home({
   }
 
   return (
-    <ul>
-      {posts.map(post => (
-        <li key={post.uid}>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.subtitle}</p>
-          <span>{post.first_publication_date}</span>
-          <span>{post.data.author}</span>
-        </li>
-      ))}
-      {nextPage && (
-        <button type="button" onClick={loadMorePages}>
-          Carregar mais posts
-        </button>
-      )}
-    </ul>
+    <>
+      <SEO title="Home" />
+      <ul>
+        {posts.map(post => (
+          <li key={post.uid}>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.subtitle}</p>
+            <span>{post.first_publication_date}</span>
+            <span>{post.data.author}</span>
+          </li>
+        ))}
+        {nextPage && (
+          <button type="button" onClick={loadMorePages}>
+            Carregar mais posts
+          </button>
+        )}
+      </ul>
+    </>
   );
 }
 
