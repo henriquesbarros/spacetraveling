@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import Prismic from '@prismicio/client';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
@@ -65,35 +66,37 @@ export default function Home({
         </figure>
       </div>
       <main className={styles.content}>
-        <ul>
+        <div>
           {posts.map(post => (
-            <li key={post.uid}>
-              <h2>{post.data.title}</h2>
-              <p>{post.data.subtitle}</p>
-              <div className={styles.postInfo}>
-                <div className={styles.first_publication_date}>
-                  <FiCalendar />
-                  <time>
-                    {format(
-                      new Date(post.first_publication_date),
-                      'dd MMM yyyy',
-                      { locale: ptBR }
-                    )}
-                  </time>
+            <Link href={`/post/${post.uid}`} key={post.uid}>
+              <a>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.subtitle}</p>
+                <div className={styles.postInfo}>
+                  <div className={styles.first_publication_date}>
+                    <FiCalendar />
+                    <time>
+                      {format(
+                        new Date(post.first_publication_date),
+                        'dd MMM yyyy',
+                        { locale: ptBR }
+                      )}
+                    </time>
+                  </div>
+                  <div className={styles.author}>
+                    <FiUser />
+                    <span>{post.data.author}</span>
+                  </div>
                 </div>
-                <div className={styles.author}>
-                  <FiUser />
-                  <span>{post.data.author}</span>
-                </div>
-              </div>
-            </li>
+              </a>
+            </Link>
           ))}
           {nextPage && (
             <button type="button" onClick={loadMorePages}>
               Carregar mais posts
             </button>
           )}
-        </ul>
+        </div>
       </main>
     </>
   );
