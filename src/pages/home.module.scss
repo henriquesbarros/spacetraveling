@@ -16,10 +16,14 @@
   margin: 0 auto;
   padding: 0 2rem;
 
-  ul {
-    list-style: none;
+  > div {
+    a {
+      display: block;
 
-    li {
+      & + a {
+        margin-top: 3rem;
+      }
+
       h2 {
         font-size: 1.75rem;
       }
@@ -53,10 +57,6 @@
           margin-left: 1.5rem;
         }
       }
-    }
-
-    li + li {
-      margin-top: 3rem;
     }
 
     button {
