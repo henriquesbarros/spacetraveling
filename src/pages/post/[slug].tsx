@@ -6,7 +6,7 @@ import { RichText } from 'prismic-dom';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
-
+import ChangePost from '../../components/ChangePost/indetx';
 import { calculateReadingTime } from '../../utils/reading-time';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -87,6 +87,9 @@ export default function Post({ post }: PostProps): JSX.Element {
           </div>
         </article>
       </main>
+      <footer className={styles.footer}>
+        <ChangePost />
+      </footer>
     </>
   );
 }
